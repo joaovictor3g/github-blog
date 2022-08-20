@@ -1,10 +1,13 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-export const Container = styled.div`
+export const Container = styled(Link)`
   padding: 2rem;
   border-radius: inherit;
   background: ${({ theme }) => theme["gray-600"]};
   border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
 
   header {
     display: flex;
@@ -34,5 +37,9 @@ export const Container = styled.div`
 
   &:hover {
     outline: 2px solid ${({ theme }) => theme["gray-400"]};
+
+    header h1 {
+      text-decoration: underline;
+    }
   }
 `;

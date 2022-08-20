@@ -6,6 +6,8 @@ export function SectionPosts() {
     <Container>
       <PostBox />
       <PostBox />
+      <PostBox />
+      <PostBox />
     </Container>
   );
 }

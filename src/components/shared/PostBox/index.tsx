@@ -3,7 +3,7 @@ import { Container } from "./styles";
 
 export function PostBox() {
   return (
-    <Container>
+    <Container to="/post/1234">
       <header>
         <h1>JavaScript data types and data structures</h1>
 

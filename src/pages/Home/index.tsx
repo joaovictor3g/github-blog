@@ -1,4 +1,4 @@
-import { ProfileBox } from "@/components/shared/ProfileBox";
+import { SectionProfile } from "./SectionProfile";
 import { SectionForm } from "./SectionForm";
 import { SectionPosts } from "./SectionPosts";
 import { Container } from "./styles";
@@ -6,7 +6,7 @@ import { Container } from "./styles";
 export function Home() {
   return (
     <Container>
-      <ProfileBox />
+      <SectionProfile />
       <SectionForm />
       <SectionPosts />
     </Container>

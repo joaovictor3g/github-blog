@@ -1,11 +1,17 @@
+import { LargeBox } from "@/components/styled/largeBox";
 import styled from "styled-components";
 
-export const Container = styled.div`
-  padding: 2rem 2.5rem;
+export const Container = styled(LargeBox)`
   z-index: 2;
 
   display: flex;
   gap: 32px;
+
+  background: ${({ theme }) => theme["gray-700"]};
+  box-shadow: 0px 2px 28px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+
+  z-index: 10;
 
   img {
     width: 148px;
