@@ -24,6 +24,7 @@ export const ProfileInfos = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 100%;
 
   .name-github-link {
     display: flex;

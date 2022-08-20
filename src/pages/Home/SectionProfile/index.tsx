@@ -3,42 +3,43 @@ import { GithubIcon } from "@/components/layout/icons/Github";
 import { PeopleIcon } from "@/components/layout/icons/People";
 import { RedirectIcon } from "@/components/layout/icons/Redirect";
 import { LargeBox } from "@/components/styled/largeBox";
+import { useUser } from "@/contexts/UserContext";
 
 import { Container, ProfileInfos } from "./styles";
 
 export function SectionProfile() {
+  const { user } = useUser();
+
+  if (!user) return null;
+
   return (
     <Container>
-      <img src="https://github.com/joaovictor3g.png" alt="" />
+      <img src={user.avatarUrl} alt="" />
 
       <ProfileInfos>
         <div className="name-github-link">
-          <strong>João Victor</strong>
+          <strong>{user.name}</strong>
 
-          <a href="https://github.com/joaovictor3g">
+          <a href={user.htmlUrl}>
             Github
             <RedirectIcon />
           </a>
         </div>
 
-        <p>
-          Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
-          viverra massa quam dignissim aenean malesuada suscipit. Nunc, volutpat
-          pulvinar vel mass.
-        </p>
+        <p>{user.bio}</p>
 
         <ul>
           <li>
             <GithubIcon />
-            <span>joaovictor3g</span>
+            <span>{user.login}</span>
           </li>
           <li>
             <EnterpriseIcon />
-            <span>Insight Data Science Lab</span>
+            <span>{user.company}</span>
           </li>
           <li>
             <PeopleIcon />
-            <span>32 seguidores</span>
+            <span>{user.followers} seguidores</span>
           </li>
         </ul>
       </ProfileInfos>
