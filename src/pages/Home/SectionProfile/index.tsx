@@ -2,7 +2,6 @@ import { EnterpriseIcon } from "@/components/layout/icons/Enterprise";
 import { GithubIcon } from "@/components/layout/icons/Github";
 import { PeopleIcon } from "@/components/layout/icons/People";
 import { RedirectIcon } from "@/components/layout/icons/Redirect";
-import { LargeBox } from "@/components/styled/largeBox";
 import { useUser } from "@/contexts/UserContext";
 
 import { Container, ProfileInfos } from "./styles";

@@ -5,7 +5,19 @@ import { RedirectIcon } from "@/components/layout/icons/Redirect";
 import { Link } from "react-router-dom";
 import { Container } from "./styles";
 
-export function SectionAbout() {
+type About = {
+  user: {
+    login: string;
+  };
+  updatedAt: string;
+  title: string;
+  url: string;
+};
+interface SectionAboutProps {
+  about: About;
+}
+
+export function SectionAbout({ about }: SectionAboutProps) {
   return (
     <Container>
       <header>
@@ -14,18 +26,18 @@ export function SectionAbout() {
           <span>Voltar</span>
         </Link>
 
-        <a href="">
+        <a href={about.url}>
           <span>Ver no github</span>
           <RedirectIcon />
         </a>
       </header>
 
-      <h1>JavaScript data types and data structures</h1>
+      <h1>{about.title}</h1>
 
       <ul>
         <li>
           <GithubIcon />
-          <span>joaovictor3g</span>
+          <span>{about.user.login}</span>
         </li>
 
         <li>

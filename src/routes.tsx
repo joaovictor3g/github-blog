@@ -7,7 +7,7 @@ export function AppRoutes() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/post/:slug" element={<Post />} />
+        <Route path="/post/:id" element={<Post />} />
       </Routes>
     </BrowserRouter>
   );
