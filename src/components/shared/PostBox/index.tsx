@@ -1,23 +1,25 @@
-import { SmallBox } from "@/components/styled/smallBox";
 import { Container } from "./styles";
 
-export function PostBox() {
+type Post = {
+  title: string;
+  updatedAt: string;
+  body: string;
+  id: number;
+};
+interface PostBoxProps {
+  post: Post;
+}
+
+export function PostBox({ post }: PostBoxProps) {
   return (
-    <Container to="/post/1234">
+    <Container to={`/post/${post.id}`}>
       <header>
-        <h1>JavaScript data types and data structures</h1>
+        <h1>{post.title}</h1>
 
         <time>Há 1 dia</time>
       </header>
 
-      <p className="content">
-        Programming languages all have built-in data structures, but these often
-        differ from one language to another. This article attempts to list the
-        built-in data structures available in JavaScript and what properties
-        they have. These can be used to build other data structures. Wherever
-        possible, comparisons with other languages are drawn. Dynamic typing
-        JavaScript is a loosely typed and dynamic language.
-      </p>
+      <p className="content">{post.body}</p>
     </Container>
   );
 }
