@@ -9,6 +9,9 @@ export const Container = styled(Link)`
   cursor: pointer;
   text-decoration: none;
 
+  max-height: 260px;
+  overflow: hidden;
+
   header {
     display: flex;
     justify-content: space-between;
@@ -33,6 +36,8 @@ export const Container = styled(Link)`
     font-size: 1rem;
     line-height: 160%;
     text-align: left;
+
+    text-overflow: ellipsis;
   }
 
   &:hover {

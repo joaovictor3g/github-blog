@@ -2,6 +2,9 @@ import { PostBox } from "@/components/shared/PostBox";
 import { api } from "@/services/api";
 import { useEffect, useState } from "react";
 import { Container } from "./styles";
+import { useForm } from "react-hook-form";
+import * as zod from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const USERNAME = "joaovictor3g";
 const REPO = "github-blog";
@@ -25,13 +28,23 @@ interface IssuesResponseProps {
   posts: Post[];
 }
 
+const searchSchema = zod.object({
+  query: zod.string(),
+});
+
+type SearchSchemaType = zod.infer<typeof searchSchema>;
+
 export function SectionPosts() {
   const [response, setResponse] = useState<IssuesResponseProps>();
 
-  async function loadPosts() {
+  const { handleSubmit, register } = useForm<SearchSchemaType>({
+    resolver: zodResolver(searchSchema),
+  });
+
+  async function loadPosts(query?: string) {
     try {
       const response = await api.get(
-        `/search/issues?q=${""}repo:${USERNAME}/${REPO}`
+        `/search/issues?q=${query ?? ""}repo:${USERNAME}/${REPO}`
       );
 
       const { total_count, items } = response.data;
@@ -42,7 +55,7 @@ export function SectionPosts() {
           ({ title, updated_at, body, number }: OriginalPost) => ({
             title,
             updatedAt: updated_at,
-            body,
+            body: body.slice(0, 300),
             id: number,
           })
         ),
@@ -50,6 +63,10 @@ export function SectionPosts() {
 
       setResponse(issue);
     } catch {}
+  }
+
+  async function onSubmit(data: SearchSchemaType) {
+    await loadPosts(data.query);
   }
 
   useEffect(() => {
@@ -62,13 +79,18 @@ export function SectionPosts() {
         <div className="about">
           <h1>Publicações</h1>
 
-          <span>6 publicações</span>
+          <span>{response?.total ?? 0} publicações</span>
         </div>
 
-        <form>
-          <input type="text" placeholder="Buscar conteúdo" />
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <input
+            type="text"
+            placeholder="Buscar conteúdo"
+            {...register("query")}
+          />
         </form>
       </div>
+
       <div className="post-box-container">
         {response?.posts.map((post) => (
           <PostBox key={post.id} post={post} />
