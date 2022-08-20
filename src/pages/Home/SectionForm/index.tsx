@@ -1,4 +1,4 @@
-import { Container } from "./section-form.styles";
+import { Container } from "./styles";
 
 export function SectionForm() {
   return (
