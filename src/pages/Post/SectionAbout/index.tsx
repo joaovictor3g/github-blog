@@ -2,6 +2,7 @@ import { ArrowIcon } from "@/components/layout/icons/Arrow";
 import { CalendarIcon } from "@/components/layout/icons/Calendar";
 import { GithubIcon } from "@/components/layout/icons/Github";
 import { RedirectIcon } from "@/components/layout/icons/Redirect";
+import { difference } from "@/utils/date";
 import { Link } from "react-router-dom";
 import { Container } from "./styles";
 
@@ -18,6 +19,8 @@ interface SectionAboutProps {
 }
 
 export function SectionAbout({ about }: SectionAboutProps) {
+  const timePhrase = difference(new Date(about.updatedAt));
+
   return (
     <Container>
       <header>
@@ -42,7 +45,7 @@ export function SectionAbout({ about }: SectionAboutProps) {
 
         <li>
           <CalendarIcon />
-          <time>Há 1 dia</time>
+          <time>{timePhrase}</time>
         </li>
       </ul>
     </Container>

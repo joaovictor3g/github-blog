@@ -1,3 +1,4 @@
+import { difference } from "@/utils/date";
 import { Container } from "./styles";
 
 type Post = {
@@ -11,12 +12,14 @@ interface PostBoxProps {
 }
 
 export function PostBox({ post }: PostBoxProps) {
+  const timePhrase = difference(new Date(post.updatedAt));
+
   return (
     <Container to={`/post/${post.id}`}>
       <header>
         <h1>{post.title}</h1>
 
-        <time>Há 1 dia</time>
+        <time>{timePhrase}</time>
       </header>
 
       <p className="content">{post.body}</p>
