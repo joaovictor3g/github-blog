@@ -2,8 +2,6 @@ import { LargeBox } from "@/components/styled/largeBox";
 import styled from "styled-components";
 
 export const Container = styled(LargeBox)`
-  z-index: 2;
-
   display: flex;
   gap: 32px;
 
@@ -12,6 +10,8 @@ export const Container = styled(LargeBox)`
   border-radius: 10px;
 
   z-index: 10;
+
+  margin-top: calc((-148px - 2rem) / 2);
 
   img {
     width: 148px;

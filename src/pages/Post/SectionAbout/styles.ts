@@ -5,6 +5,7 @@ export const Container = styled(LargeBox)`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  margin-top: calc((-148px - 2rem) / 2);
 
   header {
     display: flex;
