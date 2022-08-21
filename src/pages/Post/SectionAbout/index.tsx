@@ -1,5 +1,6 @@
 import { ArrowIcon } from "@/components/layout/icons/Arrow";
 import { CalendarIcon } from "@/components/layout/icons/Calendar";
+import { ChatIcon } from "@/components/layout/icons/Chat";
 import { GithubIcon } from "@/components/layout/icons/Github";
 import { RedirectIcon } from "@/components/layout/icons/Redirect";
 import { difference } from "@/utils/date";
@@ -13,6 +14,7 @@ type About = {
   updatedAt: string;
   title: string;
   url: string;
+  comments: number;
 };
 interface SectionAboutProps {
   about: About;
@@ -40,12 +42,17 @@ export function SectionAbout({ about }: SectionAboutProps) {
       <ul>
         <li>
           <GithubIcon />
-          <span>{about.user.login}</span>
+          <span>{about.user?.login}</span>
         </li>
 
         <li>
           <CalendarIcon />
           <time>{timePhrase}</time>
+        </li>
+
+        <li>
+          <ChatIcon />
+          <span>{about.comments} comentários</span>
         </li>
       </ul>
     </Container>

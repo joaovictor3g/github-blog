@@ -2,9 +2,8 @@ import { SectionAbout } from "./SectionAbout";
 import { SectionContent } from "./SectionContent";
 import { Container } from "./styles";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { api } from "@/services/api";
-import { userInfo } from "os";
+import { useMemo } from "react";
+import { useFetch } from "@/hooks/useFetch";
 
 const REPO = "github-blog";
 const USERNAME = "joaovictor3g";
@@ -18,6 +17,9 @@ type OriginalPost = {
   updated_at: string;
   body: string;
   number: number;
+  user: User;
+  url: string;
+  comments: number;
 };
 
 interface PostProps {
@@ -27,42 +29,41 @@ interface PostProps {
   body: string;
   id: number;
   url: string;
+  comments: number;
 }
 
 export function Post() {
-  const [post, setPost] = useState<PostProps>();
-
   const { id } = useParams() as { id: string };
   const numberId = Number(id);
 
-  useEffect(() => {
-    if (numberId !== undefined) {
-      api
-        .get(`/repos/${USERNAME}/${REPO}/issues/${numberId}`)
-        .then((response) => {
-          const { user, body, number, updated_at, title, url } = response.data;
+  const { data } = useFetch<OriginalPost>(
+    `/repos/${USERNAME}/${REPO}/issues/${numberId}`
+  );
 
-          return {
-            user: {
-              login: user.login,
-            },
-            body,
-            id: number,
-            updatedAt: updated_at,
-            title,
-            url,
-          };
-        })
-        .then((_post) => setPost(_post));
-    }
-  }, [numberId]);
+  const post = useMemo(() => {
+    if (!data) return {};
+
+    const { user, body, number, updated_at, title, url, comments } = data;
+
+    return {
+      user: {
+        login: user.login,
+      },
+      body,
+      id: number,
+      updatedAt: updated_at,
+      title,
+      url,
+      comments,
+    };
+  }, [data]) as PostProps;
 
   if (!post) return null;
 
   return (
     <Container>
       <SectionAbout about={post} />
-      <SectionContent content={post} />
+      <SectionContent body={post.body} />
     </Container>
   );
 }

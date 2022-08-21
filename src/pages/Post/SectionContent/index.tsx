@@ -3,35 +3,18 @@ import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import remarkMdx from "remark-mdx";
 
-type Content = {
-  user: {
-    login: string;
-  };
-  updatedAt: string;
-  title: string;
-  url: string;
-  body: string;
-};
 interface SectionContentProps {
-  content: Content;
+  body: string;
 }
 
-const md = `
-  let foo = 42; // foo is now a number <br />
-  foo = ‘bar’; // foo is now a string <br />
-  foo = true; // foo is now a boolean <br />
-`;
-
-export function SectionContent({ content }: SectionContentProps) {
+export function SectionContent({ body }: SectionContentProps) {
   return (
     <Container>
-      {/* <p></p> */}
-
       <Markdown
         remarkPlugins={[remarkGfm, remarkMdx]}
         rehypePlugins={[rehypeHighlight]}
       >
-        {content.body}
+        {body}
       </Markdown>
     </Container>
   );
