@@ -23,4 +23,10 @@ export const Markdown = styled(ReactMarkdown)`
   font-size: 1rem;
   line-height: 160%;
   color: ${({ theme }) => theme["gray-200"]};
+
+  code {
+    span {
+      font-family: "Fira Code";
+    }
+  }
 `;

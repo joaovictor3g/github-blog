@@ -45,6 +45,10 @@ export const Container = styled.section`
 
     font-size: 1rem;
     color: ${({ theme }) => theme.white};
+
+    &:disabled {
+      cursor: not-allowed;
+    }
   }
 
   ${({ theme }) => theme.breakpoints.sm} {

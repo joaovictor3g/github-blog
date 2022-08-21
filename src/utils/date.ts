@@ -1,10 +1,21 @@
-import { differenceInDays, differenceInHours } from "date-fns";
+import {
+  differenceInDays,
+  differenceInHours,
+  differenceInMinutes,
+} from "date-fns";
 
-function mountPhrase(time: number, flag: "hours" | "days") {
+function mountPhrase(time: number, flag: "minutes" | "hours" | "days") {
+  const flagMinutesParsed = time > 1 ? "minutos" : "minuto";
   const flagDaysParsed = time > 1 ? "dias" : "dia";
   const flagHoursParsed = time > 1 ? "horas" : "hora";
-  const flagTime = flag === "days" ? flagDaysParsed : flagHoursParsed;
-  return `Há ${time} ${flagTime}`;
+
+  const timeMap = new Map<typeof flag, string>([
+    ["days", `Há ${time} ${flagDaysParsed}`],
+    ["hours", `Há ${time} ${flagHoursParsed}`],
+    ["minutes", `Há ${time} ${flagMinutesParsed}`],
+  ]);
+
+  return timeMap.get(flag);
 }
 
 export function difference(date: Date) {
@@ -12,6 +23,12 @@ export function difference(date: Date) {
 
   if (resultDays === 0) {
     const resultHours = differenceInHours(new Date(), date);
+
+    if (resultHours === 0) {
+      const resultMinutes = differenceInMinutes(new Date(), date);
+      return mountPhrase(resultMinutes, "minutes");
+    }
+
     return mountPhrase(resultHours, "hours");
   }
 
