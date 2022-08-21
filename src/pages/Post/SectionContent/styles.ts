@@ -10,6 +10,10 @@ export const Container = styled.section`
     line-height: 160%;
     color: ${({ theme }) => theme["gray-200"]};
   }
+
+  ${({ theme }) => theme.breakpoints.sm} {
+    padding: 0.5rem;
+  }
 `;
 
 export const Markdown = styled(ReactMarkdown)`

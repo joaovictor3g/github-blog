@@ -59,4 +59,11 @@ export const Container = styled(LargeBox)`
       }
     }
   }
+
+  ${({ theme }) => theme.breakpoints.sm} {
+    ul {
+      flex-direction: column;
+      gap: 4px;
+    }
+  }
 `;
