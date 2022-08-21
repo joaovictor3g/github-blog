@@ -1,3 +1,9 @@
+import { css, FlattenSimpleInterpolation } from "styled-components";
+
+const breakpoints: Record<"sm", string> = {
+  sm: "@media(max-width: 768px)",
+};
+
 export const theme = {
   blue: "#3294F8",
 
@@ -12,4 +18,6 @@ export const theme = {
   "gray-700": "#0b1b2b",
   "gray-800": "#071422",
   "gray-900": "#040f1a",
+
+  breakpoints,
 } as const;

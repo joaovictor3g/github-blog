@@ -9,7 +9,8 @@ export const Container = styled(Link)`
   cursor: pointer;
   text-decoration: none;
 
-  max-height: 260px;
+  min-height: 260px;
+  max-height: 300px;
   overflow: hidden;
 
   header {
@@ -37,7 +38,14 @@ export const Container = styled(Link)`
     line-height: 160%;
     text-align: left;
 
+    width: 100%;
+    overflow: hidden;
     text-overflow: ellipsis;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+
+    /* white-space: nowrap; */
   }
 
   &:hover {
@@ -46,5 +54,9 @@ export const Container = styled(Link)`
     header h1 {
       text-decoration: underline;
     }
+  }
+
+  ${({ theme }) => theme.breakpoints.sm} {
+    padding: 1rem;
   }
 `;

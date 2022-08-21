@@ -10,7 +10,4 @@ export const HeaderContainer = styled.header`
   background-image: url(${headerBgImg});
   background-repeat: no-repeat;
   background-size: 100% 100%;
-
-  img {
-  }
 `;

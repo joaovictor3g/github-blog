@@ -18,6 +18,11 @@ export const Container = styled(LargeBox)`
     height: 148px;
     border-radius: 8px;
   }
+
+  ${({ theme }) => theme.breakpoints.sm} {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const ProfileInfos = styled.div`
@@ -85,6 +90,14 @@ export const ProfileInfos = styled.div`
       span {
         color: ${({ theme }) => theme.white};
       }
+    }
+  }
+
+  ${({ theme }) => theme.breakpoints.sm} {
+    ul {
+      margin-top: 1rem;
+      flex-direction: column;
+      gap: 4px;
     }
   }
 `;

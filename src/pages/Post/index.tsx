@@ -4,6 +4,7 @@ import { Container } from "./styles";
 import { useParams } from "react-router-dom";
 import { useMemo } from "react";
 import { useFetch } from "@/hooks/useFetch";
+import { Loading } from "@/components/layout/Loading";
 
 const REPO = "github-blog";
 const USERNAME = "joaovictor3g";
@@ -36,7 +37,7 @@ export function Post() {
   const { id } = useParams() as { id: string };
   const numberId = Number(id);
 
-  const { data } = useFetch<OriginalPost>(
+  const { data, loading } = useFetch<OriginalPost>(
     `/repos/${USERNAME}/${REPO}/issues/${numberId}`
   );
 
@@ -58,7 +59,7 @@ export function Post() {
     };
   }, [data]) as PostProps;
 
-  if (!post) return null;
+  if (loading) return <Loading />;
 
   return (
     <Container>

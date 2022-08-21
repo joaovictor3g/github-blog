@@ -11,5 +11,6 @@ export function useFetch<T>(url: string) {
   return {
     data,
     error,
+    loading: !data && !error,
   };
 }

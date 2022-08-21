@@ -46,4 +46,10 @@ export const Container = styled.section`
     font-size: 1rem;
     color: ${({ theme }) => theme.white};
   }
+
+  ${({ theme }) => theme.breakpoints.sm} {
+    .post-box-container {
+      grid-template-columns: 100%;
+    }
+  }
 `;

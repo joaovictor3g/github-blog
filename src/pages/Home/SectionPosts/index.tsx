@@ -55,7 +55,7 @@ export function SectionPosts() {
           ({ title, updated_at, body, number }: OriginalPost) => ({
             title,
             updatedAt: updated_at,
-            body: body.slice(0, 300),
+            body,
             id: number,
           })
         ),
@@ -86,6 +86,7 @@ export function SectionPosts() {
           <input
             type="text"
             placeholder="Buscar conteúdo"
+            disabled={!response?.posts}
             {...register("query")}
           />
         </form>
