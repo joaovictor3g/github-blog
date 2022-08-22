@@ -7,8 +7,8 @@ export const Container = styled.div`
   align-items: center;
 
   .loader {
-    border: 8px solid ${({ theme }) => theme.white};
-    border-top: 8px solid ${({ theme }) => theme.blue};
+    border: 6px solid ${({ theme }) => theme["gray-400"]};
+    border-top: 6px solid ${({ theme }) => theme.blue};
     border-radius: 50%;
     width: 60px;
     height: 60px;
